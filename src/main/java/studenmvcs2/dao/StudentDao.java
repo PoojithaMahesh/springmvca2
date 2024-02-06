@@ -29,4 +29,26 @@ public class StudentDao {
 		return query.getResultList();
 	}
 
+	public void deleteStudentById(int id) {
+		Student dbStudent=entityManager.find(Student.class, id);
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.remove(dbStudent);
+		entityTransaction.commit();
+		
+	}
+
+	public Student findStudent(int id) {
+		// TODO Auto-generated method stub
+		return entityManager.find(Student.class, id);
+	}
+
+	public void updateStudent(Student student) {
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.merge(student);
+		entityTransaction.commit();
+		
+	}
+
 }
